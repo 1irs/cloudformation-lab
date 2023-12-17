@@ -93,7 +93,7 @@ execution_role = Role(
 t.add_resource(execution_role)
 
 ecs_cluster = ecs.Cluster(
-    title="ECSCluster", CapacityProviders=["FARGATE"]
+    title="ECSCluster", CapacityProviders=["FARGATE"], DependsOn=execution_role
 )
 t.add_resource(ecs_cluster)
 
@@ -135,6 +135,7 @@ ecs_task_definition = ecs.TaskDefinition(
                 ecs.Environment(Name="WORDPRESS_DB_HOST", Value=GetAtt(db, "Endpoint.Address")),
                 ecs.Environment(Name="WORDPRESS_DB_USER", Value=DB_USER),
                 ecs.Environment(Name="WORDPRESS_DB_PASSWORD", Value=DB_PASSWORD),
+                ecs.Environment(Name="WORDPRESS_DEBUG", Value="1"),
             ],
             Essential=True,
             Cpu=0,
