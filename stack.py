@@ -135,7 +135,6 @@ ecs_task_definition = ecs.TaskDefinition(
                 ecs.Environment(Name="WORDPRESS_DB_HOST", Value=GetAtt(db, "Endpoint.Address")),
                 ecs.Environment(Name="WORDPRESS_DB_USER", Value=DB_USER),
                 ecs.Environment(Name="WORDPRESS_DB_PASSWORD", Value=DB_PASSWORD),
-                ecs.Environment(Name="WORDPRESS_DEBUG", Value="1"),
             ],
             Essential=True,
             Cpu=0,
