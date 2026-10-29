@@ -44,6 +44,7 @@ t.add_resource(db_sgr)
 db = DBInstance(
     title="Database",
     AllocatedStorage="20",
+    BackupRetentionPeriod=0,
     DBInstanceClass="db.t3.micro",
     DBName=DB_NAME,
     Engine="mysql",
